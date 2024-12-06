@@ -347,9 +347,9 @@ function enviarCorreoReserva(fecha, horario, countryCode, precioDolares, precioP
     const selectedService = window.servicioId;
     const fromName = "VibrandOmm"
     const metodosPago = {
-        CO: "Nequi, Bancolombia, PayPal",
-        CA: "e-Transfer, PayPal",
-        default: "PayPal"
+        CO: "Nequi: 3102261387, Bancolombia: Ahorros , PayPal: d.pipe11@gmail.com",
+        CA: "e-Transfer: elita-96@hotmail.com, PayPal: d.pipe11@gmail.com",
+        default: "PayPal: d.pipe11@gmail.com"
     };
     let precio = '';
     let metodos = metodosPago.default;  // Método por defecto
