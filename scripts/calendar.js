@@ -371,6 +371,7 @@ function enviarCorreoReserva(fecha, horario, countryCode, precioDolares, precioP
         horario: horario,
         servicio: selectedService,
         precio: precio,
+        metodos: metodos
     };
 
 
