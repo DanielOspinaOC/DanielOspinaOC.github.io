@@ -1,0 +1,84 @@
+/* Ajustes generales para la sección de meditaciones */
+#meditaciones {
+    padding: 100px 20px 20px; /* Espacio superior para evitar que el header cubra el título */
+    background-color: #F2E8DC;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Estilo para el título de la página */
+.titulo-pagina {
+    font-size: 2.5rem;
+    color: #8C0120;
+    margin-bottom: 30px;
+    font-family: 'Georgia', serif;
+}
+
+/* Contenedor de cada meditación */
+.meditacion-container {
+    background-color: #D4A59A;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%; /* Se ajusta al 90% en pantallas pequeñas */
+}
+
+/* Título de cada meditación */
+.meditacion-container h2 {
+    font-size: 1.8rem;
+    color: #4D2C2A;
+    font-family: 'PlayFairDisplay';
+    margin-bottom: 15px;
+}
+
+/* Estilo para los controles de audio */
+.audio-controls {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.audio-controls audio {
+    width: 100%;
+    max-width: 500px; /* Ancho máximo para evitar que se expanda en pantallas grandes */
+}
+
+/* Descripción de la meditación */
+.descripcion {
+    font-size: 1rem;
+    color: #4D2C2A;
+    font-family: 'SourceSans3';
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+    .titulo-pagina {
+        font-size: 2rem;
+    }
+
+    .meditacion-container h2 {
+        font-size: 1.6rem;
+    }
+
+    .descripcion {
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .titulo-pagina {
+        font-size: 1.8rem;
+    }
+
+    .meditacion-container h2 {
+        font-size: 1.4rem;
+    }
+
+    .descripcion {
+        font-size: 0.9rem;
+    }
+}

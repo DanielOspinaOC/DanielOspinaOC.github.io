@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+
+/* Sección de Información de Sesión */
+#sesion-info {
+    background-color: #D4A59A;
+    padding: 80px 20px 40px; /* Ajuste para que el título no quede oculto por el header */
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#sesion-info h1 {
+    font-size: 2.5rem;
+    color: #8C0120;
+    margin-bottom: 20px;
+    font-family: 'PlayFairDisplay';
+}
+
+#sesion-info p {
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    color: #fefbe8;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Media Queries para ajustar en pantallas más pequeñas */
+@media (max-width: 768px) {
+    #sesion-info h1 {
+        font-size: 2rem;
+    }
+
+    #sesion-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #sesion-info h1 {
+        font-size: 1.8rem;
+    }
+
+    #sesion-info p {
+        font-size: 0.9rem;
+    }
+}

@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Ajuste general para el contenedor principal */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Posicionar el contenido después del header */
+main {
+    padding-top: 80px;
+    text-align: center;
+    background-color: #D4A59A;
+}
+
+/* Estilo del título */
+main h1 {
+    font-family: 'PlayFairDisplay';
+    font-size: 2.5rem;
+    color: #8C0120;
+    margin: 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Contenedor principal para la explicación */
+#explicacion-detalle {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: row-reverse;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+/* Estilos para la imagen en la sección de explicación */
+.explicacion-imagen {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-left: 20px;
+}
+
+/* Contenido de información */
+.explicacion-info {
+    flex: 1;
+    text-align: left;
+    padding-right: 20px;
+    margin-top: 0;
+}
+
+/* Estilo del texto */
+.explicacion-info p {
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    color: #fefbe8;
+    text-align: left;
+    margin-top: 0;
+}
+
+.agendar-container {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.agendar-boton {
+    display: inline-block;
+    padding: 15px 30px;
+    font-family: 'PlayFairDisplay';
+    font-size: 20px;
+    color: #8b2432;
+    background-color: #EAD3BF;
+    border: 2px solid #8C0120;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.agendar-boton:hover {
+    background-color: #F2E8DC;
+    color: #8C0120;
+}
+
+
+/* Media Queries para pantallas medianas y pequeñas */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 768px) {
+    #explicacion-detalle {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .explicacion-imagen {
+        max-width: 80%;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+
+    .explicacion-info {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    main h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Teléfonos y pantallas pequeñas */
+@media (max-width: 480px) {
+    main {
+        padding-top: 60px;
+    }
+
+    main h1 {
+        font-size: 1.8rem;
+        padding: 15px 0;
+    }
+
+    #explicacion-detalle {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .explicacion-info p {
+        font-size: 1rem;
+    }
+
+    .explicacion-imagen {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .explicacion-info {
+        padding-right: 0;
+        text-align: center;
+    }
+}

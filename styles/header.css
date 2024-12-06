@@ -1,0 +1,151 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Estilos generales del header */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #8c0120;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+header nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+/* Logo */
+.header-logo {
+    width: 50px;
+    height: auto;
+}
+
+/* Menú en versión de escritorio */
+.header-nav {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.header-nav li {
+    display: flex;
+    align-items: center;
+}
+
+.header-nav li a {
+    text-decoration: none;
+    color: #fefbe8;
+    margin: 0 15px;
+    font-family: "PlayFairDisplay";
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Redes sociales en escritorio */
+.social-links a img {
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+}
+
+/* Estilos para móviles */
+/* Estilos para móviles */
+@media (max-width: 768px) {
+    /* Contenedor de encabezado solo para móviles */
+    .header-content {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .brand-name a {
+        flex: 2;
+        text-align: center;
+        color: #fefbe8;
+        font-size: 20px;
+        font-family: "PlayFairDisplay";
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        color: #fefbe8;
+        font-family: 'PlayFairDisplay';
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    /* Ocultar navegación de lista en móvil por defecto */
+    .header-nav {
+        display: none;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 250px;
+        max-height: 300px;
+        overflow-y: auto;
+        background-color: #8c0120;
+        flex-direction: column;
+        align-items: flex-start; /* Ajuste para alinear los elementos a la izquierda */
+        padding: 20px;
+        box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Mostrar menú al activar */
+    .header-nav.menu-open {
+        display: flex;
+    }
+
+    .header-nav li {
+        margin: 10px 0;
+        text-align: left;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Ajuste para íconos de redes sociales en móvil */
+    .social-links a img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+/* Ocultar elementos solo para móvil en escritorio */
+@media (min-width: 769px) {
+    .menu-toggle,
+    .brand-name, .close-menu {
+        display: none;
+    }
+
+    /* Mostrar la lista de menú en horizontal en escritorio */
+    .header-nav {
+        display: flex;
+        align-items: left;
+    }
+}

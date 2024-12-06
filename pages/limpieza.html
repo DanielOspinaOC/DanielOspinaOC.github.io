@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpieza - VibrandOmm</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/serviciosindividual.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" href="../styles/calendar.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/2.3.1/luxon.min.js"></script>
+    <link href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "DlN59R0zx9Tw2gAkn",
+            });
+        })();
+    </script>
+    <script type="module" src="../scripts/firebase.js"></script>
+    <script>
+        window.servicioId = 'Limpieza';  // Cambia según el servicio de la página
+        
+    </script>
+    <script type="module" src="../scripts/calendar.js"></script>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <main id="servicio-individual">
+        <h1>Limpieza Energética</h1>
+        <section id="servicio-detalle">
+            <img src="../images/limpieza1.png" alt="armonizacion" class="servicio-imagen">
+            <div class="servicio-info">
+                
+                <p>La limpieza energética es un proceso profundo diseñado para liberar y transformar energías densas o negativas que puedan estar afectando tanto a tu bienestar personal como al ambiente en el que vives o trabajas. En esta sesión, utilizamos herramientas y técnicas específicas para identificar y eliminar bloqueos energéticos, permitiendo que fluya nuevamente una energía equilibrada y armoniosa.
+
+                </p><br>
+                <p>Este servicio no solo se enfoca en ti como individuo, ayudándote a sentirte más ligero, en paz y con mayor claridad mental, sino que también abarca la limpieza de espacios físicos importantes para ti, como tu hogar, oficina o incluso tu vehículo.
+
+                </p><br>
+                <h3>Es ideal para situaciones como:</h3><br>
+                <li>Sensaciones de pesadez o estancamiento en ciertos lugares.</li>
+                <li>Renovar la energía tras conflictos, cambios o eventos desafiantes.</li>
+                <li>Preparar un espacio para nuevos proyectos o etapas de vida.</li>    
+                <li>Alinear tu entorno con una energía positiva y revitalizadora.</li>    
+                <br>
+                <p>Regálate la oportunidad de experimentar una conexión renovada contigo mismo y con los espacios que forman parte de tu día a día.</p>
+                <br>
+            </section>
+        
+        <!-- Formulario para captura de detalles de la reserva -->
+        
+
+        <section id="calendar-section">
+            <h2>Agendar Cita</h2>
+            <div class="calendar-container">
+                <div class="column">
+                    <div id="datepicker"></div>
+                </div>
+                <div class="column" id="time-slots-column">
+                    <h3>Horarios Disponibles</h3>
+                    <h3>(Hora Local)</h3>
+                    <div id="time-slots"></div>
+                </div>
+                <div class="column" id="reserve-column">
+                    <h3>Reserva</h3>
+                    <section id="user-details">
+                        <form id="reservation-form">
+                            <label for="user_name">Nombre Completo:</label>
+                            <input type="text" id="user_name" name="user_name" placeholder="Nombre Completo" required>
+        
+                            <label for="user_email">Correo Electrónico:</label>
+                            <input type="email" id="user_email" name="user_email" placeholder="Correo Electrónico" required>
+                            <input type="hidden" id="selected_service" name="selected_service" value="Sesión Gratis">
+                        </form>
+                    </section>
+                    <section id="precio-servicio-section">
+                        <p id="precio-servicio">Cargando valor...</p>
+                    </section>
+                    <button id="reserve-button" disabled>Reservar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="../scripts/main.js" defer></script>
+    <div include-html="../includes/footer.html"></div>
+
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Configuración general */
+main {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Ajuste para evitar que la sección quede detrás del header */
+#historia {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #EAD3BF;
+    width: 100vw;
+    box-sizing: border-box;
+    margin-top: 70px; /* Ajuste para que comience debajo del header */
+}
+
+#historia h1 {
+    color: #8b2432;
+    font-family: 'PlayFairDisplay';
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+#historia p {
+    color: #4D2C2A;
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Sección Vibrandomm */
+#vibrandomm {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #F2E8DC;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+#vibrandomm h1 {
+    color: #8b2432;
+    font-family: 'PlayFairDisplay';
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+
+}
+
+#vibrandomm p {
+    color: #4D2C2A;
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Sección Misión y Visión */
+#mision-vision {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #F2E8DC;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.mision, .vision {
+    flex: 1;
+    min-width: 280px;
+    max-width: 500px;
+    padding: 20px;
+    background-color: #EAD3BF;
+    border-radius: 8px;
+    color: #4D2C2A;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mision h2, .vision h2 {
+    font-family: 'PlayFairDisplay';
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #8b2432;
+}
+
+.mision p, .vision p {
+    font-family: 'SourceSans3';
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    #historia h1, #vibrandomm h1, .mision h2, .vision h2 {
+        font-size: 1.8rem;
+    }
+
+    #historia p, #vibrandomm p, .mision p, .vision p {
+        font-size: 1rem;
+    }
+
+    #mision-vision {
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    #historia, #vibrandomm, #mision-vision {
+        padding: 20px 10px;
+    }
+
+    .mision, .vision {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
+
+    #historia h1, #vibrandomm h1, .mision h2, .vision h2 {
+        font-size: 1.5rem;
+    }
+}

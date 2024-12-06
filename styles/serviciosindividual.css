@@ -1,0 +1,136 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Estructura general */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+#servicio-individual {
+    padding-top: 80px;
+    text-align: center;
+    background-color: #D4A59A;
+}
+
+#servicio-individual h1 {
+    font-size: 2.5rem;
+    font-family: "PlayFairDisplay";
+    color: #8C0120;
+    margin: 0;
+    padding: 20px 0;
+}
+
+/* Contenedor de detalles del servicio */
+#servicio-detalle {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    flex-direction: row-reverse;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
+}
+
+.servicio-imagen {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin-left: 20px;
+}
+
+.servicio-info {
+    flex: 1;
+    text-align: left;
+    padding-right: 20px;
+    margin-top: 0;
+}
+
+.servicio-info p,
+.servicio-info li {
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    color: #fefbe8;
+    margin-top: 0;
+}
+
+.servicio-info h2,
+.servicio-info h3 {
+    font-family: 'PlayFairDisplay';
+    color: #fefbe8;
+    margin-top: 0;
+    font-weight: bold; 
+}
+
+.servicio-info li {
+    margin-bottom: 10px;
+}
+
+/* Media Queries */
+
+/* Pantallas medianas (tablets) */
+@media (max-width: 768px) {
+    #servicio-detalle {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .servicio-imagen {
+        max-width: 80%;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+
+    .servicio-info {
+        padding-right: 0;
+        text-align: center;
+    }
+
+    #servicio-individual h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+    #servicio-individual {
+        padding-top: 60px;
+    }
+
+    #servicio-individual h1 {
+        font-size: 1.8rem;
+        padding: 15px 0;
+    }
+
+    #servicio-detalle {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .servicio-info p {
+        font-size: 1rem;
+    }
+
+    .servicio-imagen {
+        max-width: 100%;
+        margin-left: 0;
+    }
+
+    .servicio-info {
+        padding-right: 0;
+        text-align: center;
+    }
+}

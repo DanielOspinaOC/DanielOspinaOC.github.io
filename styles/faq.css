@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Estilos generales */
+body {
+    
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #EAD3BF;
+}
+
+/* Estilos para la sección de preguntas frecuentes */
+.faq-section {
+    max-width: 600px;
+    margin: 100px auto 20px auto; /* Ajuste superior para comenzar debajo del header */
+    padding: 50px;
+    background-color: #EBE4DE;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h1 {
+    text-align: center;
+    color: #8C0120;
+    font-family: 'PlayFairDisplay';
+    font-size: 2rem;
+    margin-top: 0; /* Quita márgenes innecesarios */
+}
+
+/* Estilos para cada pregunta */
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 15px;
+    font-size: 1.5rem;
+    font-family: 'PlayFairDisplay';
+    color: #8C0120;
+    background-color: #f1f1f1;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #e2e2e2;
+}
+
+.faq-answer {
+    display: none;
+    padding: 15px;
+    font-family: 'SourceSans3';
+    font-size: 1.2rem;
+    color: #4D2C2A;
+    background-color: #fefbe8;
+    border-left: 4px solid #8C0120;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+
+/* Media Queries para pantallas pequeñas y medianas */
+
+/* Ajustes para tablets y pantallas medianas */
+@media (max-width: 768px) {
+    .faq-section {
+        max-width: 90%;
+        padding: 30px;
+        margin-top: 80px; /* Ajuste superior para tablets */
+    }
+
+    .faq-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .faq-answer {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para teléfonos y pantallas pequeñas */
+@media (max-width: 480px) {
+    .faq-section {
+        max-width: 100%;
+        padding: 20px;
+        margin-top: 60px; /* Ajuste superior para pantallas pequeñas */
+    }
+
+    .faq-section h1 {
+        font-size: 1.5rem;
+    }
+
+    .faq-question {
+        font-size: 0.95rem;
+        padding: 8px;
+    }
+
+    .faq-answer {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+}

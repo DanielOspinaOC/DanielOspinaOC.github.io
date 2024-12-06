@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Estilos servicios */
+.services-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
+    background-color: #f1f1f1;
+}
+
+.service-box {
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
+.service-box img {
+    width: 100px;
+    height: 100px;
+}
+
+.comments-section {
+    padding: 40px;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+#comments-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f1f1f1;
+}
+
+
+/* Estilo del Main */
+#servicios {
+    padding: 20px;
+    text-align: center;
+    background-color: #D4A59A;
+    margin-top: 60px; /* Ajusta este valor según la altura del header */
+}
+
+/* Contenedor específico para los servicios */
+.servicios-contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+    gap: 20px;
+    justify-items: center;
+}
+
+/* Contenedor principal de servicios */
+.servicios-contenedor {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas en pantallas grandes */
+    gap: 20px; /* Espacio entre los elementos */
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Estilo para cada servicio item */
+.servicio-item {
+    text-align: center;
+    background-color: #EAD3BF;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 300px;
+    margin: 0 auto;
+    transition: box-shadow 0.3s ease;
+}
+
+.servicio-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo para el botón y la imagen */
+.servicio-boton {
+    padding: 10px;
+}
+
+.servicio-item img {
+    width: 100%;
+    max-width: 250px;
+    height: 250px; /* Altura ajustada para hacer el contenedor más compacto en dispositivos móviles */
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
+
+.servicio-item img:hover {
+    transform: scale(1.05);
+}
+
+.servicio-item p {
+    margin-top: 10px;
+    font-size: 24px;
+    font-family: 'PlayFairDisplay';
+    color: #8b2432;
+}
+
+/* Media Queries para ajustes en diferentes pantallas */
+@media (max-width: 1024px) {
+    .servicios-contenedor {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en tablets */
+    }
+
+    .servicio-item img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 768px) {
+    .servicios-contenedor {
+        grid-template-columns: repeat(2, 1fr); /* Dos columnas en pantallas más pequeñas */
+    }
+
+    .servicio-item p {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .servicios-contenedor {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+
+    .servicio-item img {
+        max-width: 200px;
+        height: 200px;
+    }
+
+    .servicio-item p {
+        font-size: 18px;
+    }
+}

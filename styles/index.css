@@ -1,0 +1,349 @@
+@font-face {
+    font-family: 'PlayFairDisplay';
+    src: url('../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'SourceSans3';
+    src: url('../fonts/SourceSans3-VariableFont_wght.ttf') format('truetype');
+}
+/* Ajustes generales para el main */
+main {
+    margin-top: 70px;
+}
+
+/* Estilo para la sección de bienvenida */
+#bienvenida {
+    position: relative;
+    width: 100%;
+    height: 80vh; /* Ajusta la altura para pantallas más grandes */
+    overflow: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: brightness(50%);
+}
+
+.video-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fefbe8;
+    text-align: center;
+    font-family: 'PlayFairDisplay';
+}
+
+.video-overlay h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Sección de Información */
+#informacion {
+    text-align: center;
+    background-color: #F2E8DC;
+    padding: 50px 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+#informacion p {
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: 'SourceSans3';
+    color: #4D2C2A;
+}
+
+/* Sección de Detalles */
+#detalle {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    background-color: #D4A59A;
+    padding: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #fefbe8;
+}
+
+.detalle-item {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.detalle-item img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.detalle-item h2 {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-family: 'PlayFairDisplay';
+}
+
+.detalle-item p {
+    font-size: 20px;
+    line-height: 1.5;
+    font-family: 'SourceSans3';
+}
+
+/* Sección de Información Adicional */
+#informacion-adicional {
+    text-align: center;
+    background-color: #EAD3BF;
+    padding: 50px 40px;
+    font-family: 'Lora', serif;
+    color: #4D2C2A;
+}
+
+#informacion-adicional h2,
+#informacion-adicional h3 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #8b2432;
+    font-family: 'PlayFairDisplay';
+}
+
+#informacion-adicional h2 {
+    font-size: 32px;
+    color: #8b2432;
+}
+
+#informacion-adicional h3 {
+    font-size: 28px;
+    margin-top: 40px;
+    color: #8b2432;
+}
+
+#informacion-adicional p {
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 800px;
+    font-family: 'SourceSans3';
+    margin: 0 auto 30px auto;
+}
+
+#informacion-adicional .agendar {
+    display: inline-block;
+    padding: 15px 30px;
+    font-family: 'PlayFairDisplay';
+    font-size: 20px;
+    color: #fefbe8;
+    background-color: #C08477;
+    border: 2px solid #8C0120;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#informacion-adicional .agendar:hover {
+    background-color: #EAD3BF;
+    color: #8b2432;
+}
+
+/* Sección de Agenda */
+#agenda {
+    text-align: center;
+    background-color: #C08477;
+    padding: 50px 40px;
+    font-family: 'PlayFairDisplay';
+    color: #fefbe8;
+}
+
+.botones {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.boton-contenedor {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.boton-contenedor img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.boton-contenedor p {
+    margin-top: 10px;
+    font-family: 'PlayFairDisplay';
+    font-size: 20px;
+    color: #fefbe8;
+}
+
+.boton-contenedor:hover img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+/* Sección de Testimonios */
+#testimonios {
+    background-color: #EBE4DE;
+    color: #8b2432;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+#testimonios h2 {
+    font-size: 40px;
+    font-family: 'PlayFairDisplay';
+    font-weight: bold;
+}
+
+#testimonios-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonio-item {
+    display: none;
+    text-align: center;
+    background-color: #EAD3BF;
+    border: 1px solid #D4B59E;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.testimonio-item.active {
+    display: block;
+}
+
+.testimonio-item img {
+    max-width: 30%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Flechas */
+.flecha {
+    font-size: 2rem;
+    color: #4D2C2A;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.flecha:hover {
+    color: #8b2432;
+}
+
+.flecha.izquierda {
+    left: -50px;
+}
+
+.flecha.derecha {
+    right: -50px;
+}
+
+/* Ajuste para las flechas en pantallas pequeñas */
+@media (max-width: 768px) {
+    #detalle {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .botones {
+        grid-template-columns: 1fr;
+    }
+
+    .boton-contenedor img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #testimonios h2 {
+        font-size: 28px;
+    }
+
+    .flecha {
+        font-size: 1.5rem;
+        color: #4D2C2A;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 10px;
+    }
+
+    /* Posición de las flechas para mantenerlas visibles */
+    .flecha.izquierda {
+        left: 10px;
+    }
+
+    .flecha.derecha {
+        right: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #bienvenida {
+        height: 60vh;
+    }
+
+    .video-overlay h1 {
+        font-size: 36px;
+    }
+
+    #informacion p, #informacion-adicional p {
+        font-size: 18px;
+    }
+
+    #informacion-adicional h2 {
+        font-size: 28px;
+    }
+
+    #informacion-adicional h3 {
+        font-size: 24px;
+    }
+
+    #agenda {
+        padding: 30px 20px;
+    }
+
+    /* Ajuste adicional para las flechas en pantallas muy pequeñas */
+    .flecha {
+        font-size: 1.2rem;
+        top: 50%;
+        padding: 0 5px;
+    }
+
+    .flecha.izquierda {
+        left: 5px;
+    }
+
+    .flecha.derecha {
+        right: 5px;
+    }
+}
