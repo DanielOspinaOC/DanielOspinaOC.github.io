@@ -41,8 +41,9 @@
 
 #time-slots-column button {
     display: block;
-    width: 70%;
+    width: 100%;
     padding: 10px;
+    margin-left: 10px;
     margin-bottom: 10px;
     background-color: #8C0120;
     color: white;
