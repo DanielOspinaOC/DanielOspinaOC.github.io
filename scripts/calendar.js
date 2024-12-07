@@ -3,9 +3,11 @@
 async function obtenerUbicacion() {
     
     try {
+        console.log("Obteniendo ubicación...");
         const response = await fetch("https://ipapi.co/json/");
+        console.log("Respuesta del API:", response);
         const data = await response.json();
-        
+        console.log("Datos obtenidos del API:", data);
         return data.country_code;  // Devuelve el código del país
         
     } catch (error) {
@@ -15,27 +17,32 @@ async function obtenerUbicacion() {
 }
 
 function obtenerZonaHoraria() {
-        return Intl.DateTimeFormat().resolvedOptions().timeZone;  // Detectar automáticamente
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    console.log("Zona horaria detectada:", timeZone);
+    return timeZone;
 }
 function convertirHoraColombiaALocal(horaColombia) {
+    console.log("Hora en Colombia recibida para conversión:", horaColombia);
     const zonaHorariaColombia = 'America/Bogota';
     const zonaHorariaUsuario = obtenerZonaHoraria();
-
+    console.log("Zona horaria del usuario:", zonaHorariaUsuario);
     const horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'hh:mm a', { zone: zonaHorariaColombia });
-
+    console.log("Hora en formato Luxon para Colombia:", horaColombiaDT.toISO());
     // Convertir a la hora local del usuario
     const horaLocal = horaColombiaDT.setZone(zonaHorariaUsuario);
+    console.log("Hora convertida a hora local:", horaLocal.toLocaleString(luxon.DateTime.TIME_SIMPLE));
 
     return horaLocal.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Formato como 10:00 AM
 }
 
 function convertirHoraLocalAColombia(horaLocal) {
+    console.log("Hora local recibida para conversión a Colombia:", horaLocal);
     const zonaHorariaColombia = 'America/Bogota';
     const zonaHorariaUsuario = obtenerZonaHoraria();
 
     // Asegúrate de que horaLocal esté en el formato correcto para la conversión
     const horaLocalDT = luxon.DateTime.fromFormat(horaLocal, 'h:mm a', { zone: zonaHorariaUsuario });
-
+    console.log("Hora en formato Luxon para la hora local:", horaLocalDT.toISO());
     // Verifica si el formato de hora local fue interpretado correctamente
     if (!horaLocalDT.isValid) {
         console.error('Hora local inválida:', horaLocal);
@@ -44,7 +51,8 @@ function convertirHoraLocalAColombia(horaLocal) {
 
     // Convertir a la zona horaria de Colombia
     const horaColombia = horaLocalDT.setZone(zonaHorariaColombia);
-
+    console.log("Hora convertida a Colombia:", horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE));
+    
     return horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Regresar la hora en formato 12 horas (AM/PM)
 }
 
@@ -111,10 +119,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     var saturdayTimeSlots = ['09:00 AM', '11:00 AM'];
 
     function renderTimeSlots(date) {
+        console.log("Fecha seleccionada para horarios:", date);
         timeSlotsEl.innerHTML = '';
         
     
         var dayOfWeek = date.getDay();
+        console.log("Día de la semana:", dayOfWeek);
         var slots = [];
     
         if (dayOfWeek >= 1 && dayOfWeek <= 5) {
@@ -128,19 +138,21 @@ document.addEventListener("DOMContentLoaded", async function () {
     
         consultarReservas(date, (reservasDelDia) => {
             
-    
+            console.log("Reservas del día consultadas:", reservasDelDia);
             // Convertir reservas a hora Colombia para hacer la comparación
             const horariosReservados = Object.values(reservasDelDia).map(reserva => reserva.horario);
-            
+            console.log("Horarios ya reservados:", horariosReservados);
+
             // Filtrar los horarios disponibles comparando con las reservas en hora Colombia
             const horariosNoReservados = slots.filter(slot => {
                 const slotNormalized = slot.replace(/^0/, ''); // Remueve el cero inicial si existe
                 return !horariosReservados.some(reserva => {
                     const reservaNormalized = reserva.replace(/^0/, ''); // Normaliza las reservas también
                     return reservaNormalized === slotNormalized;
+                    
                 });
             });
-            
+            console.log("Horarios disponibles:", horariosNoReservados);
             
             
             horariosNoReservados.forEach(function (slot) {
@@ -188,11 +200,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                 month: 'long',
                 day: 'numeric'
             }).toLowerCase(); // Formatear en español antes de guardar
-            
+            console.log("Reserva activada...");
+            console.log("Usuario seleccionado:", userNameInput.value);
+            console.log("Correo del usuario:", userEmailInput.value);
+            console.log("Fecha seleccionada:", selectedDate);
+            console.log("Horario seleccionado:", selectedSlot ? selectedSlot.innerText : "Ninguno");
             const horaLocal = selectedSlot.innerText;  // Hora local seleccionada
            
             const horaColombia = convertirHoraLocalAColombia(horaLocal);
-          
+            console.log("Hora en Colombia:", horaColombia);
             const horaInicio = convertirHora24(horaColombia);
          
             const horaFin = calcularHoraFin(horaInicio); // Suma las dos horas
@@ -216,9 +232,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                     descripcion: `Reserva realizada por ${userName}, correo: ${userEmail}, servicio ${window.servicioId}`
                 }),
             })
-            .then(response => response.text())
+            .then(response => {
+                console.log("Respuesta del servidor al enviar evento:", response);
+                if (!response.ok) {
+                    throw new Error(`HTTP Error: ${response.status}`);
+                }
+                return response.text();
+            })
             .then(data => {
-              
+                console.log("Datos procesados del servidor:", data);
                 alert('¡Reserva exitosa, recibirás un correo con información detallada de tu cita!');
             })
             .catch(error => {
@@ -301,7 +323,9 @@ function agregarReserva(fecha, horario) {
     const userEmail = document.getElementById('user_email').value.trim();
     const reservasRef = ref(db, 'reservas/' + fecha);
     const nuevaReserva = push(reservasRef);
-
+    console.log("Agregando reserva...");
+    console.log("Fecha:", fecha);
+    console.log("Horario:", horario);
    
 
     set(nuevaReserva, {
@@ -310,9 +334,9 @@ function agregarReserva(fecha, horario) {
         nombreUsuario: userName,
         correoUsuario: userEmail
     }).then(() => {
-    
+        console.log("Reserva guardada exitosamente en Firebase.");
     }).catch((error) => {
-     
+        console.error("Error al guardar la reserva en Firebase:", error);
     });
 }
 
@@ -342,6 +366,10 @@ function consultarReservas(date, callback) {
 
 // Enviar correo de confirmación
 function enviarCorreoReserva(fecha, horario, countryCode, precioDolares, precioPesosColombianos, precioDolaresCanadienses) {
+    console.log("Preparando envío de correo...");
+    console.log("Fecha:", fecha);
+    console.log("Horario:", horario);
+    console.log("Country Code:", countryCode);
     const userName = document.getElementById('user_name').value;
     const userEmail = document.getElementById('user_email').value;
     const selectedService = window.servicioId;
@@ -374,7 +402,7 @@ function enviarCorreoReserva(fecha, horario, countryCode, precioDolares, precioP
         metodos: metodos
     };
 
-
+    console.log("Parámetros enviados al correo:", templateParams);
 
     // Verificar si el servicio es "sesionGratis" para usar un template distinto
     let templateId;
@@ -386,7 +414,7 @@ function enviarCorreoReserva(fecha, horario, countryCode, precioDolares, precioP
 
     emailjs.send("service_fysygrr", templateId, templateParams)
         .then(function (response) {
-       
+            console.log("Correo enviado exitosamente:", response);
         }, function (error) {
             console.error('Error al enviar correo:', error);
         });
