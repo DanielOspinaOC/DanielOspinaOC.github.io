@@ -221,7 +221,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             // Llamar a la función de enviar correo con la hora local (para mostrar al usuario)
             enviarCorreoReserva(formattedDate, horaLocal, countryCode, precioDolares, precioPesosColombianos, precioDolaresCanadienses);
             // Enviar los detalles al servidor para agregar el evento al calendario de Google
-            fetch('http://localhost:5501/agregar-evento', {
+            fetch('https://vibrandomm.com/agregar-evento', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

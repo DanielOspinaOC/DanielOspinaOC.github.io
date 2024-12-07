@@ -9,7 +9,7 @@ const app = express();
 const path = require('path');
 const port = 5501;
 const corsOptions = {
-  origin: ['http://localhost:5501', 'http://127.0.0.1:5501'],
+  origin: ['https://vibrandomm.com', 'https://www.vibrandomm.com'], // Dominios permitidos en producción
   methods: ['GET', 'POST']
 };
 app.use(cors(corsOptions));
@@ -26,6 +26,7 @@ const oauth2Client = new OAuth2(
 oauth2Client.setCredentials({
   access_token: 'ya29.a0AcM612yRhC5aS2DcyDU2-wLZUude4hCjrpndD-f7kHHPHdSrmCRqPWvYUQ9Tf0Qyogf0UaO-ezd-5gaTYXa-7DiMczNn5m5SbtZE9iJmRPDIbWBz7MamsI6CGGQOgSBgt7EuolscdgSbn52Y_ngKUPhCNjlwcKfI8oC2imToaCgYKAUgSARESFQHGX2Mi6owpE1mxfN94BOMW-eSMIA0175',  // Coloca aquí tu access_token
   refresh_token: '1//01UjwRLIMo83sCgYIARAAGAESNwF-L9IrK5pzbPmZ1IlCPbwxQhBdwMb6ymUd2mfZSvYEajee3XciAyyh2EpaYq6n5aC8HgFpXqY',  // Coloca aquí tu refresh_token
+  'https://vibrandomm.com/oauth2callback'
 });
 
 
