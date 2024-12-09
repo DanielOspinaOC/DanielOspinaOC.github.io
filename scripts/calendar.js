@@ -40,21 +40,28 @@ function convertirHoraLocalAColombia(horaLocal) {
     const zonaHorariaColombia = 'America/Bogota';
     const zonaHorariaUsuario = obtenerZonaHoraria();
 
-    // Asegúrate de que horaLocal esté en el formato correcto para la conversión
-    const horaLocalDT = luxon.DateTime.fromFormat(horaLocal, 'h:mm a', { zone: zonaHorariaUsuario });
-    console.log("Hora en formato Luxon para la hora local:", horaLocalDT.toISO());
-    // Verifica si el formato de hora local fue interpretado correctamente
+    // Normaliza la hora local
+    const normalizadaHoraLocal = horaLocal.trim(); // Elimina espacios innecesarios
+
+    // Intenta convertir usando formatos compatibles
+    let horaLocalDT = luxon.DateTime.fromFormat(normalizadaHoraLocal, 'HH:mm', { zone: zonaHorariaUsuario });
+
     if (!horaLocalDT.isValid) {
-        console.error('Hora local inválida:', horaLocal);
+        console.warn("Formato 24h fallido, intentando con formato 12h (h:mm a)...");
+        horaLocalDT = luxon.DateTime.fromFormat(normalizadaHoraLocal, 'h:mm a', { zone: zonaHorariaUsuario });
+    }
+
+    if (!horaLocalDT.isValid) {
+        console.error('Hora local inválida:', normalizadaHoraLocal);
         return 'Invalid DateTime'; // Manejamos el error aquí
     }
 
-    // Convertir a la zona horaria de Colombia
     const horaColombia = horaLocalDT.setZone(zonaHorariaColombia);
     console.log("Hora convertida a Colombia:", horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE));
     
     return horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Regresar la hora en formato 12 horas (AM/PM)
 }
+
 
 // Importar Firebase
 import { ref, set, get, push } from "https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js";
