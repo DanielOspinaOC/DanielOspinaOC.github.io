@@ -1,3 +1,14 @@
+const fs = require('fs');
+
+// Ruta para el desafío de Let's Encrypt
+app.use('/.well-known/acme-challenge', express.static(path.join(__dirname, '.well-known/acme-challenge')));
+
+// Crea el directorio si no existe
+if (!fs.existsSync(path.join(__dirname, '.well-known/acme-challenge'))) {
+    fs.mkdirSync(path.join(__dirname, '.well-known/acme-challenge'), { recursive: true });
+}
+
+
 const express = require('express');
 const { google } = require('googleapis');
 const bodyParser = require('body-parser'); // Import body-parser
