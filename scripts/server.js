@@ -62,18 +62,27 @@ async function agregarEventoAlCalendario(fecha, horaInicio, horaFin, resumen, de
 
 // Ruta para agregar un evento de ejemplo (puedes cambiar la fecha y horas)
 app.post('/agregar-evento', (req, res) => {
-  console.log("Solicitud recibida en /agregar-evento:", req.body); // Verificar datos
+  console.log("Solicitud recibida en /agregar-evento:");
+  console.log("Cuerpo de la solicitud:", req.body);
+
   const { fecha, horaInicio, horaFin, resumen, descripcion } = req.body;
 
   if (!fecha || !horaInicio || !horaFin || !resumen || !descripcion) {
-      console.error("Faltan datos para crear el evento.");
+      console.error("Datos incompletos:", req.body);
       return res.status(400).send('Faltan datos para crear el evento.');
   }
 
-  console.log("Datos validados, procediendo a agregar evento...");
-  agregarEventoAlCalendario(fecha, horaInicio, horaFin, resumen, descripcion);
-  res.status(200).send('Intentando agregar evento al calendario...');
+  agregarEventoAlCalendario(fecha, horaInicio, horaFin, resumen, descripcion)
+    .then(() => {
+        console.log("Evento agregado exitosamente.");
+        res.send('Intentando agregar evento al calendario...');
+    })
+    .catch(err => {
+        console.error("Error al agregar evento:", err);
+        res.status(500).send("Error al agregar el evento.");
+    });
 });
+
 
 // Inicia el servidor en el puerto especificado
 app.listen(port, () => {
