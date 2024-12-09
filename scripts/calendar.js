@@ -35,36 +35,32 @@ function convertirHoraColombiaALocal(horaColombia) {
     return horaLocal.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Formato como 10:00 AM
 }
 
-function convertirHoraLocalAColombia(horaLocal) {
-    console.log("Hora local recibida para conversión a Colombia:", horaLocal);
+function convertirHoraColombiaALocal(horaColombia) {
+    console.log("Hora recibida para convertir:", horaColombia);
+
     const zonaHorariaColombia = 'America/Bogota';
     const zonaHorariaUsuario = obtenerZonaHoraria();
 
-    // Normaliza la hora local
-    const normalizadaHoraLocal = horaLocal.trim(); // Elimina espacios innecesarios
+    // Intenta interpretar la hora en formato de 24 horas primero
+    let horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'HH:mm', { zone: zonaHorariaColombia });
 
-    // Intenta convertir usando formatos compatibles
-    let horaLocalDT = luxon.DateTime.fromFormat(normalizadaHoraLocal, 'HH:mm', { zone: zonaHorariaUsuario });
-
-    if (!horaLocalDT.isValid) {
-        console.warn("Formato 24h fallido, intentando con formato 12h (h:mm a)...");
-        horaLocalDT = luxon.DateTime.fromFormat(normalizadaHoraLocal, 'h:mm a', { zone: zonaHorariaUsuario });
+    if (!horaColombiaDT.isValid) {
+        console.warn("Formato de 24 horas fallido, intentando con 12 horas...");
+        horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'h:mm a', { zone: zonaHorariaColombia });
     }
 
-    if (!horaLocalDT.isValid) {
-        console.error('Hora local inválida:', normalizadaHoraLocal);
-        return 'Invalid DateTime'; // Manejo del error
+    if (!horaColombiaDT.isValid) {
+        console.error("Hora inválida recibida:", horaColombia);
+        return 'Invalid DateTime';
     }
 
-    // Convertir a la zona horaria de Colombia
-    const horaColombia = horaLocalDT.setZone(zonaHorariaColombia);
+    // Convertir a la hora local del usuario
+    const horaLocal = horaColombiaDT.setZone(zonaHorariaUsuario);
 
-    // Forzar salida en formato 12 horas con AM/PM
-    const horaFormateada = horaColombia.toFormat('h:mm a');
-    console.log("Hora convertida a Colombia:", horaFormateada);
-
-    return horaFormateada;
+    console.log("Hora convertida a local:", horaLocal.toFormat('h:mm a'));
+    return horaLocal.toFormat('h:mm a'); // Regresar en formato 12 horas con AM/PM
 }
+
 
 
 
@@ -132,48 +128,55 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     function renderTimeSlots(date) {
         console.log("Fecha seleccionada para horarios:", date);
-        timeSlotsEl.innerHTML = '';
-        
+        timeSlotsEl.innerHTML = ''; // Limpia los horarios anteriores
     
-        var dayOfWeek = date.getDay();
+        const dayOfWeek = date.getDay(); // Obtén el día de la semana
         console.log("Día de la semana:", dayOfWeek);
-        var slots = [];
     
+        let slots = []; // Inicializa los horarios disponibles
         if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-            slots = weekdayTimeSlots;
+            slots = weekdayTimeSlots; // Horarios entre semana
         } else if (dayOfWeek === 6) {
-            slots = saturdayTimeSlots;
+            slots = saturdayTimeSlots; // Horarios de sábado
         } else {
-            
+            console.log("No hay horarios disponibles para este día.");
             return;
         }
     
+        // Consultar las reservas existentes para este día
         consultarReservas(date, (reservasDelDia) => {
-            
             console.log("Reservas del día consultadas:", reservasDelDia);
-            // Convertir reservas a hora Colombia para hacer la comparación
+    
             const horariosReservados = Object.values(reservasDelDia).map(reserva => reserva.horario);
             console.log("Horarios ya reservados:", horariosReservados);
-
-            // Filtrar los horarios disponibles comparando con las reservas en hora Colombia
+    
+            // Filtrar los horarios no reservados
             const horariosNoReservados = slots.filter(slot => {
-                const slotNormalized = slot.replace(/^0/, ''); // Remueve el cero inicial si existe
+                const slotNormalized = slot.replace(/^0/, ''); // Normaliza eliminando ceros iniciales
                 return !horariosReservados.some(reserva => {
                     const reservaNormalized = reserva.replace(/^0/, ''); // Normaliza las reservas también
                     return reservaNormalized === slotNormalized;
-                    
                 });
             });
+    
             console.log("Horarios disponibles:", horariosNoReservados);
-            
-            
+    
+            // Renderizar los horarios disponibles
             horariosNoReservados.forEach(function (slot) {
-                const horaLocal = convertirHoraColombiaALocal(slot); // Mostrar hora local al usuario
+                // Convertir cada horario a formato local antes de mostrarlo
+                const horaLocal = convertirHoraColombiaALocal(slot);
+                if (horaLocal === 'Invalid DateTime') {
+                    console.error("Horario inválido, ignorando:", slot);
+                    return;
+                }
+    
+                console.log("Hora local convertida:", horaLocal);
     
                 const button = document.createElement('button');
-                button.innerText = `${horaLocal}`; 
+                button.innerText = `${horaLocal}`; // Mostrar el horario convertido
                 button.classList.add('time-slot-btn');
     
+                // Manejar selección de horarios
                 button.onclick = function () {
                     if (selectedSlot) {
                         selectedSlot.classList.remove('selected');
@@ -181,15 +184,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                     button.classList.add('selected');
                     selectedSlot = button;
     
-                   
-                    reserveButton.style.display = 'block';
+                    reserveButton.style.display = 'block'; // Muestra el botón de reserva
                     validateForm();
                 };
     
-                timeSlotsEl.appendChild(button);
+                timeSlotsEl.appendChild(button); // Agrega el botón al DOM
             });
         });
     
+        // Muestra los horarios en pantalla
         document.getElementById('time-slots').style.display = 'block';
     }
     
