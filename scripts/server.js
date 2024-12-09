@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname)));
 const oauth2Client = new OAuth2(
   '1029473679217-uecq0nnjqbor12fu2dju41vvedctsqd6.apps.googleusercontent.com',
   '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',
-  'http://127.0.0.1:5501/oauth2callback'  // Cambia según el puerto y ruta de tu servidor
+  'http://vibrandomm.com/oauth2callback'  // Cambia según el puerto y ruta de tu servidor
 );
 
 // Establecer credenciales (access_token y refresh_token)
@@ -62,18 +62,25 @@ async function agregarEventoAlCalendario(fecha, horaInicio, horaFin, resumen, de
 
 // Ruta para agregar un evento de ejemplo (puedes cambiar la fecha y horas)
 app.post('/agregar-evento', (req, res) => {
+  console.log("Solicitud recibida en /agregar-evento:", req.body); // Verificar datos
   const { fecha, horaInicio, horaFin, resumen, descripcion } = req.body;
 
   if (!fecha || !horaInicio || !horaFin || !resumen || !descripcion) {
+      console.error("Faltan datos para crear el evento.");
       return res.status(400).send('Faltan datos para crear el evento.');
   }
 
+  console.log("Datos validados, procediendo a agregar evento...");
   agregarEventoAlCalendario(fecha, horaInicio, horaFin, resumen, descripcion);
-  res.send('Intentando agregar evento al calendario...');
+  res.status(200).send('Intentando agregar evento al calendario...');
 });
-
 
 // Inicia el servidor en el puerto especificado
 app.listen(port, () => {
   
+});
+
+app.use((req, res, next) => {
+  console.log(`Solicitud recibida: ${req.method} ${req.url}`);
+  next();
 });
