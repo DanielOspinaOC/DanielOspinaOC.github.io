@@ -22,17 +22,29 @@ function obtenerZonaHoraria() {
     return timeZone;
 }
 function convertirHoraColombiaALocal(horaColombia) {
-    console.log("Hora en Colombia recibida para conversión:", horaColombia);
+    console.log("Hora recibida para convertir:", horaColombia);
+
     const zonaHorariaColombia = 'America/Bogota';
     const zonaHorariaUsuario = obtenerZonaHoraria();
-    console.log("Zona horaria del usuario:", zonaHorariaUsuario);
-    const horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'hh:mm a', { zone: zonaHorariaColombia });
-    console.log("Hora en formato Luxon para Colombia:", horaColombiaDT.toISO());
+
+    // Intenta interpretar la hora en formato de 24 horas primero
+    let horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'HH:mm', { zone: zonaHorariaColombia });
+
+    if (!horaColombiaDT.isValid) {
+        console.warn("Formato de 24 horas fallido, intentando con 12 horas...");
+        horaColombiaDT = luxon.DateTime.fromFormat(horaColombia, 'h:mm a', { zone: zonaHorariaColombia });
+    }
+
+    if (!horaColombiaDT.isValid) {
+        console.error("Hora inválida recibida:", horaColombia);
+        return 'Invalid DateTime';
+    }
+
     // Convertir a la hora local del usuario
     const horaLocal = horaColombiaDT.setZone(zonaHorariaUsuario);
-    console.log("Hora convertida a hora local:", horaLocal.toLocaleString(luxon.DateTime.TIME_SIMPLE));
 
-    return horaLocal.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Formato como 10:00 AM
+    console.log("Hora convertida a local:", horaLocal.toFormat('h:mm a'));
+    return horaLocal.toFormat('h:mm a'); // Regresar en formato 12 horas con AM/PM
 }
 
 function convertirHoraLocalAColombia(horaLocal) {
