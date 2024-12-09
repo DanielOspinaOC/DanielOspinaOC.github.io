@@ -53,14 +53,19 @@ function convertirHoraLocalAColombia(horaLocal) {
 
     if (!horaLocalDT.isValid) {
         console.error('Hora local inválida:', normalizadaHoraLocal);
-        return 'Invalid DateTime'; // Manejamos el error aquí
+        return 'Invalid DateTime'; // Manejo del error
     }
 
+    // Convertir a la zona horaria de Colombia
     const horaColombia = horaLocalDT.setZone(zonaHorariaColombia);
-    console.log("Hora convertida a Colombia:", horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE));
-    
-    return horaColombia.toLocaleString(luxon.DateTime.TIME_SIMPLE); // Regresar la hora en formato 12 horas (AM/PM)
+
+    // Forzar salida en formato 12 horas con AM/PM
+    const horaFormateada = horaColombia.toFormat('h:mm a');
+    console.log("Hora convertida a Colombia:", horaFormateada);
+
+    return horaFormateada;
 }
+
 
 
 // Importar Firebase
